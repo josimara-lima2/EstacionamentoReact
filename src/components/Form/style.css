@@ -1,0 +1,13 @@
+.delete{
+    background-color: #DC143C;
+   
+}
+
+.edit{
+    background-color:#2F4F4F ;
+}
+.edit, .delete{
+    border:none;
+    border-radius:10px;
+    margin: 2px;
+}
