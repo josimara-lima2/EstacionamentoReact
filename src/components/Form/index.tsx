@@ -6,7 +6,7 @@ import Typography from "@mui/material/Typography"
 import { useEffect } from "react"
 import { useState } from "react"
 import { UseAppDispatch, UseAppSelector } from "../../store"
-import { VeiculoSelector, adicionarVeiculo, lerVeiculo, removerVeiculo,editarVeiculo } from "../../store/reducers/veiculos"
+import { VeiculoSelector, adicionarVeiculo, lerVeiculo, removerVeiculo} from "../../store/reducers/veiculos"
 import EditIcon from '@mui/icons-material/Edit';
 import './style.css'
 const Form = () => {
@@ -15,9 +15,10 @@ const Form = () => {
     const [nome,setNome] = useState("")
     const [placa,setPlaca] = useState("")
     const [renderizar,setRenderizar] = useState(false)
+    const list = veiculos
     
 useEffect(() =>{
-    dispatch(lerVeiculo())
+    dispatch(lerVeiculo(list))
 },[renderizar])
 
     
@@ -31,7 +32,7 @@ useEffect(() =>{
             <TableCell>{item.entrada}</TableCell>
             <TableCell>
               <button onClick={() => handleRemove(item.placa)} className="delete" ><IconButton sx={{color:"#fafafa"}}><DeleteOutline/></IconButton></button>
-              <button  className="edit" ><IconButton  sx={{color:"#fafafa"}}><EditIcon/></IconButton></button>
+              <button className="edit" ><IconButton  sx={{color:"#fafafa"}}><EditIcon/></IconButton></button>
             
             </TableCell>
         </TableRow>
@@ -41,6 +42,7 @@ useEffect(() =>{
     const handleRemove = (placa:string) => {
       dispatch(removerVeiculo({placa}))
     }
+   
    
    
 

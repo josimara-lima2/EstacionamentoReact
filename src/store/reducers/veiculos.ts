@@ -14,8 +14,10 @@ const VeiculoSlice = createSlice({
     name:"veiculos",
     initialState,
     reducers:{
-        lerVeiculo():Veiculo[]{
+        lerVeiculo(state,action:PayloadAction<Veiculo[]>){
             return localStorage.patio ? JSON.parse(localStorage.patio) : []
+            
+           
         },
 
         adicionarVeiculo(state,action:PayloadAction<Veiculo>){
@@ -31,9 +33,7 @@ const VeiculoSlice = createSlice({
             localStorage.setItem("patio",JSON.stringify(novoPatio))
             
         }, 
-        editarVeiculo(state,action:PayloadAction<Veiculo>){
-            adicionarVeiculo(action.payload)
-        }
+    
 
 
         
@@ -43,6 +43,6 @@ const VeiculoSlice = createSlice({
 })
 
 
-export const {lerVeiculo, adicionarVeiculo,removerVeiculo, editarVeiculo} = VeiculoSlice.actions
+export const {lerVeiculo, adicionarVeiculo,removerVeiculo} = VeiculoSlice.actions
 export const VeiculoSelector = (state:RootState) => state.veiculos
 export default VeiculoSlice.reducer
